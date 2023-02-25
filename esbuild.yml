@@ -1,0 +1,26 @@
+# esbuild.yml
+
+# Options for the development environment
+development:
+  # The entry file for your JavaScript code
+  entry_points:
+    - app/javascript/packs/application.ts
+  # The output file for the bundled code
+  outdir: app/assets/builds
+  # Enable source maps for easier debugging
+  sourcemap: true
+  # Watch the files for changes and rebuild automatically
+  watch: true
+  # Serve the files over HTTP for easier debugging in the browser
+  serve:
+    port: 8080
+
+# Options for the production environment
+production:
+  # The entry file for your JavaScript code
+  entry_points:
+    - app/javascript/packs/application.js
+  # The output file for the bundled code
+  outdir: public/packs/production
+  # Minimize the bundled code for smaller file size
+  minify: true
