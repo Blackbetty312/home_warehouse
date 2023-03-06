@@ -3,6 +3,9 @@
   <head>
     <title>Home warehouse</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="apple-touch-icon" sizes="180x180" href="<%= asset_path "favicon/apple-touch-icon.png" %>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<%= asset_path "favicon/favicon-32x32.png" %>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<%= asset_path "favicon/favicon-16x16.png" %>">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
@@ -15,10 +18,17 @@
           <%= render "layouts/side" %>
         <% end %>
         <div class="col py-3">
-          <p class="notice"><%= notice %></p>
-          <p class="alert"><%= alert %></p>
-          <%- if user_signed_in? %>
-            <%= button_to 'Log out', destroy_user_session_path, method: :delete %>
+          <% if notice %>
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+              <strong><%= notice %></strong>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          <% end %>
+          <% if alert %>
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+              <strong><%= alert %></strong>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
           <% end %>
           <%= yield %>
         </div>

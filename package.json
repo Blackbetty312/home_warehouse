@@ -2,23 +2,29 @@
   "name": "app",
   "private": "true",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.3.0",
     "@hotwired/stimulus": "3.2.1",
     "@hotwired/turbo-rails": "7.2.5",
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.3",
+    "bootstrap-social": "^5.1.1",
     "esbuild": "^0.17.10",
+    "jquery": "^3.6.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sass": "^1.58.3"
+    "sass": "^1.58.3",
+    "toastr": "^2.1.4"
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=assets --loader:.ts=tsx",
-    "build:css": "sass ./app/assets/stylesheets/application.bootstrap.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules"
+    "build:css": "sass ./app/assets/stylesheets/application.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules"
   },
   "devDependencies": {
+    "@types/jquery": "^3.5.16",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
-    "@types/sass": "^1.43.1"
+    "@types/sass": "^1.43.1",
+    "@types/toastr": "^2.1.40"
   }
 }
