@@ -5,20 +5,24 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
-
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%- if user_signed_in? %>
-      <%# data: { confirm: 'Are you sure?' } %>
-      <%= button_to 'Log out', destroy_user_session_path, method: :delete %>
-    <% end %>
-    <%= yield %>
+    <div class="container-fluid">
+      <div class="row flex-nowrap toggled">
+        <% if user_signed_in? %>
+          <%= render "layouts/side" %>
+        <% end %>
+        <div class="col py-3">
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
+          <%- if user_signed_in? %>
+            <%= button_to 'Log out', destroy_user_session_path, method: :delete %>
+          <% end %>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

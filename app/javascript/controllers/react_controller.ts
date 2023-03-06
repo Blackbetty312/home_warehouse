@@ -6,7 +6,10 @@ import App from "../components/Home/App"
 // Connects to data-controller="react"
 export default class extends Controller {
   connect() {
-    console.log("React controller connected");
+    function abc() {
+      return "XYZ"
+    }
+    console.log("React controller connected !");
     const app = document.getElementById("app");
     if (!app) {
       console.error("element with app id not found")
