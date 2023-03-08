@@ -75,6 +75,9 @@ GEM
       msgpack (~> 1.2)
     brakeman (5.4.0)
     builder (3.2.4)
+    bullet (7.0.7)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.11)
     bundler-audit (0.9.1)
       bundler (>= 1.2.0, < 3)
       thor (~> 1.0)
@@ -300,6 +303,8 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
+    tailwindcss-rails (2.0.24-x86_64-linux)
+      railties (>= 6.0.0)
     thor (1.2.1)
     tilt (2.1.0)
     timeout (0.3.1)
@@ -312,6 +317,7 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.4.2)
+    uniform_notifier (1.16.0)
     version_gem (1.1.1)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -339,6 +345,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   brakeman
+  bullet (~> 7.0, >= 7.0.7)
   bundler-audit
   capybara
   cssbundling-rails (~> 1.1, >= 1.1.2)
@@ -365,6 +372,7 @@ DEPENDENCIES
   selenium-webdriver
   sprockets-rails
   stimulus-rails
+  tailwindcss-rails (~> 2.0)
   toastr-rails
   turbo-rails
   tzinfo-data
@@ -376,4 +384,4 @@ RUBY VERSION
    ruby 3.2.1p31
 
 BUNDLED WITH
-   2.4.1
+   2.4.7

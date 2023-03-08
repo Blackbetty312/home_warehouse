@@ -8,31 +8,29 @@
     <link rel="icon" type="image/png" sizes="16x16" href="<%= asset_path "favicon/favicon-16x16.png" %>">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%# removed defer: true because toastr after sign in with omniauth not working %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
   </head>
   <body>
-    <div class="container-fluid">
-      <div class="row flex-nowrap toggled">
-        <% if user_signed_in? %>
-          <%= render "layouts/side" %>
-        <% end %>
-        <div class="col py-3">
-          <% if notice %>
-            <div class="alert alert-info alert-dismissible fade show" role="alert">
-              <strong><%= notice %></strong>
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-          <% end %>
-          <% if alert %>
-            <div class="alert alert-info alert-dismissible fade show" role="alert">
-              <strong><%= alert %></strong>
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-          <% end %>
-          <%= yield %>
-        </div>
+    <%= render "layouts/navigation" %>
+    <% if user_signed_in? %>
+      <%= render "layouts/side" %>
+    <% end %>
+    <div class="<%= user_signed_in? ? "p-4 sm:ml-64" : "col py-3" %>">
+      <div class="p-4 mt-14 bootstrap">
+        <%= flash_toastr %>
+        <%= yield %>
       </div>
     </div>
   </body>
 </html>
+<script>
+  // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+  if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+  } else {
+      document.documentElement.classList.remove('dark')
+  }
+</script>

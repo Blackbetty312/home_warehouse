@@ -13,6 +13,5 @@
  *= require_tree .
  *= require_self
  */
- @import "./application.bootstrap.scss";
- @import "toastr";
- @import "bootstrap-social";
+@import "application.bootstrap";
+@import "toastr";

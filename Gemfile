@@ -45,9 +45,11 @@ gem 'will_paginate', '~> 3.3.1', '>= 3.3.1'
 gem 'i18n-active_record', require: 'i18n/active_record'
 gem 'cssbundling-rails', '~> 1.1', '>= 1.1.2'
 gem 'toastr-rails'
+gem "tailwindcss-rails", "~> 2.0"
 group :development, :test do
 # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
 gem "debug", "1.7.1", platforms: %i[ mri mingw x64_mingw ]
+gem 'bullet', '~> 7.0', '>= 7.0.7'
 gem "rspec-rails"
 gem "rubocop-rspec"
 end
