@@ -5,4 +5,6 @@
 import { application } from "./application"
 
 import ReactController from "./react_controller"
+import TranslationController from "./translation_controller"
 application.register("react", ReactController)
+application.register("translation", TranslationController)

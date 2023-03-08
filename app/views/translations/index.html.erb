@@ -1,33 +1,3 @@
-<h1>Translations for <%= @locale %></h1>
-<table>
-  <thead>
-    <tr>
-      <th>Translation Key</th>
-      <th>Setting</th>
-      <th>Actions</th>
-      <th>test</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% translation_keys(@locale).each do |key| %>
-      <% translation = translation_for_key(@translations, key) %>
-      <tr id="<%= key %>">
-        <td><%= key %></td>
-        <td><%= translation.nil? ? I18n.t(key, locale: @locale) : translation.value %></td>
-        <td>
-          <% if translation.nil? %>
-            <%= link_to "Edit", new_locale_translation_url(@locale, key: key) %>
-          <% else %>
-            <%= link_to "Edit", edit_locale_translation_url(@locale, translation) %>
-            <%= link_to "Reset", locale_translation_url(@locale, translation), method: :delete, data: { confirm: "Are you sure?" } %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<br>
-<p><%= I18n.t("abece.def.gieha") %></p>
-<p><%= I18n.t("abece.def.ijk") %></p>
-<p><%= I18n.t("abece.lmn") %></p>
-<p><%= I18n.t("xyz") %></p>
+<%= content_tag(:div, "", id:"app", data: {
+    controller: "translation",
+}, 'data-translation-props': {data: translation_keys(@source_locale).map {|t| translation = {key: t, locale_original: @source_locale, locale_target: @target_locale, value_original: translation_for_key(@translations, t).nil? ? I18n.t(t, locale: @locale) : translation_for_key(@translations, t).value, value_target: @target.where(key: t).first&.value}}}.to_json) %>

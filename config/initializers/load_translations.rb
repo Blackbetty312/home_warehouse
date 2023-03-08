@@ -7,6 +7,7 @@ Translation.pluck(:key, :locale, :value).each do |key, locale, value|
 end
 
 translations_yml = YAML.load_file(Rails.root.join('config', 'locales', 'pl.yml'))
+devise_translations_yml = YAML.load_file(Rails.root.join('config', 'locales', 'devise.pl.yml'))
 flatten_hash = lambda do |hash, prefix|
   hash.each do |key, value|
     full_key = prefix ? "#{prefix}.#{key}" : key.to_s
@@ -21,3 +22,4 @@ flatten_hash = lambda do |hash, prefix|
   end
 end
 flatten_hash.call(translations_yml, nil)
+flatten_hash.call(devise_translations_yml, nil)

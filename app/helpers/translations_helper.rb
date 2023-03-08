@@ -6,8 +6,10 @@ module TranslationsHelper
     private
 
     def default_keys
-        YAML.load_file("#{Rails.root}/config/locales/pl.yml").map {|k,v| nested_hash_to_string(v)}
-        nested_hash_to_string(YAML.load_file("#{Rails.root}/config/locales/pl.yml")).map {|x| x.split(".")[1..].join(".")}
+        pl = YAML.load_file("#{Rails.root}/config/locales/pl.yml")
+        devise_pl = YAML.load_file("#{Rails.root}/config/locales/devise.pl.yml")
+        pl.merge!(devise_pl)
+        nested_hash_to_string(pl).map {|x| x.split(".")[1..].join(".")}
     end
 
     def translation_for_key(translations, key)

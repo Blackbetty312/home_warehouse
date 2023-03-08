@@ -60,4 +60,4 @@ pl:
       not_locked: "nie było zablokowane"
       not_saved:
         one: "wystąpił 1 błąd uniemożliwiający zapisanie %{resource}:"
-        other: ""
+        other: "%{count} błędów uniemożliwiło zapisanie %{resource}:"

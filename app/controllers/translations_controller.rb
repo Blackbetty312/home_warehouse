@@ -1,10 +1,13 @@
 class TranslationsController < ApplicationController
     before_action :find_locale
     before_action :retrieve_key, only: [:create, :update]
-    before_action :find_translation, only: [:edit, :update]
+    before_action :find_translation_update, only: [:update]
   
     def index
-      @translations = Translation.locale(@locale)
+      @source_locale = params[:source_locale] || "pl"
+      @target_locale = params[:target_locale] || "en"
+      @target = Translation.locale(@target_locale)
+      @translations = Translation.locale(@source_locale)
     end
   
     def new
@@ -31,12 +34,13 @@ class TranslationsController < ApplicationController
     end
   
     def update
+      puts "*****" * 25
+      puts translation_params
       if @translation.update(translation_params)
-        flash[:notice] = "Translation for #{ @key } updated."
         I18n.backend.reload!
-        redirect_to locale_translations_url(@locale)
+        render json: {status: :success }
       else
-        render :edit
+        render json: {status: :error, error: @translation.errors }
       end
     end
   
@@ -51,9 +55,9 @@ class TranslationsController < ApplicationController
     def find_locale
       @locale = params[:locale_id]
     end
-  
-    def find_translation
-      @translation = Translation.find(params[:id])
+
+    def find_translation_update
+      @translation = Translation.where(key: params[:i18n_backend_active_record_translation][:key], locale: params[:i18n_backend_active_record_translation][:locale])
     end
   
     def retrieve_key
