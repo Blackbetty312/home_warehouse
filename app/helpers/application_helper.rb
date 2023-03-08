@@ -26,5 +26,20 @@ module ApplicationHelper
         </script>
       HTML
     end
+
+    def flash_toastr
+      flash_messages = []
+      
+      flash.each do |type, message|
+        type = 'success' if type == 'notice'
+        type = 'error' if type == 'alert' || type == 'danger'
+        
+        toastr_message = "toastr.#{type}('#{message}', '', {closeButton: true, progressBar: true})"
+        
+        flash_messages << javascript_tag(toastr_message)
+      end
+      
+      flash_messages.join("\n").html_safe
+    end
   end
   

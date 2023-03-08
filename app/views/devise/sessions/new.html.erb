@@ -1,33 +1,54 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+      <div class="card shadow-lg border-0 rounded-lg mt-5">
+        <div class="card-header">
+          <h3 class="text-center font-weight-light my-4">Log in</h3>
+        </div>
+        <div class="card-body">
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'form'}) do |f| %>
+            <div class="form-floating mb-3">
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', id: 'inputEmail' %>
+              <label for="inputEmail">Email</label>
+            </div>
+            <div class="form-floating mb-3">
+              <%= f.password_field :password, autocomplete: "current-password", class: 'form-control', id: 'inputPassword' %>
+              <label for="inputPassword">Password</label>
+            </div>
+            <% if devise_mapping.rememberable? %>
+              <div class="mb-3">
+                <div class="form-check">
+                  <%= f.check_box :remember_me, class: 'form-check-input', id: 'rememberMe' %>
+                  <label class="form-check-label" for="rememberMe">Remember me</label>
+                </div>
+              </div>
+            <% end %>
+            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+              <%= f.submit "Log in", class: 'btn btn-primary' %>
+            </div>
+          <% end %>
+          <hr class="my-4">
+          <div class="text-center">
+            <%- if devise_mapping.omniauthable? %>
+              <%- resource_class.omniauth_providers.each do |provider| %>
+                <% case provider.to_s %>
+                <% when 'google_oauth2' %>
+                <%= button_to omniauth_authorize_path(resource_name, provider), class: 'btn btn-google btn-block', data: { turbo: false } do %>
+                  <i class="fab fa-google me-2"></i> Sign in with Google
+                <% end %>
+                <% when 'facebook' %>
+                <%= button_to omniauth_authorize_path(resource_name, provider), class: 'btn btn-facebook btn-block my-2', data: { turbo: false } do %>
+                  <i class="fab fa-facebook-f me-2"></i> Sign in with Facebook
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="card-footer text-center py-3">
+        <%= render "devise/shared/links" %>
+      </div>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
-<div>
-  <%- if devise_mapping.omniauthable? %>
-    <%- resource_class.omniauth_providers.each do |provider| %>
-      <%= button_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), data: { turbo: false } %>
-    <% end %>
-  <% end %>
 </div>
-
-<%= render "devise/shared/links" %>
+</div>

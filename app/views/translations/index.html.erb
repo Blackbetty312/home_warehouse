@@ -1,0 +1,3 @@
+<%= content_tag(:div, "", id:"app", data: {
+    controller: "translation",
+}, 'data-translation-props': {data: translation_keys(@source_locale).map {|t| translation = {key: t, locale_original: @source_locale, locale_target: @target_locale, value_original: translation_for_key(@translations, t).nil? ? I18n.t(t, locale: @locale) : translation_for_key(@translations, t).value, value_target: @target.where(key: t).first&.value}}}.to_json) %>
