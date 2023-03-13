@@ -9,6 +9,11 @@ class ApplicationController < ActionController::Base
       session[:locale] = lang
       redirect_to root_path
     end
+
+    def set_lang
+      set_locale
+      redirect_to root_path
+    end
     
     private
     def set_locale
