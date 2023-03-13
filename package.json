@@ -19,7 +19,7 @@
     "toastr": "^2.1.4"
   },
   "scripts": {
-    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=assets --loader:.ts=tsx",
+    "build": "esbuild app/javascript/*.* --bundle --outdir=app/assets/builds --public-path=assets --loader:.ts=tsx",
     "build:css": "sass ./app/assets/stylesheets/application.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules"
   },
   "devDependencies": {

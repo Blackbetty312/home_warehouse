@@ -41,5 +41,23 @@ module ApplicationHelper
       
       flash_messages.join("\n").html_safe
     end
+
+    def country_flag
+      case I18n.locale
+      when :pl
+        return "flags/4x3/pl.svg"
+      when :en
+        return "flags/4x3/us.svg"
+      end
+    end
+
+    def country_name
+      case I18n.locale
+      when :pl
+        return "Polski"
+      when :en
+        return "English"
+      end
+    end
   end
   

@@ -11,5 +11,4 @@ declare global {
 // Configure Stimulus development experience
 application.debug = true;
 window.Stimulus = application;
-
 export { application };
