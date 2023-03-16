@@ -8,7 +8,7 @@ module TranslationsHelper
     def default_keys
         pl = YAML.load_file("#{Rails.root}/config/locales/pl.yml")
         devise_pl = YAML.load_file("#{Rails.root}/config/locales/devise.pl.yml")
-        pl.merge!(devise_pl)
+        pl.deep_merge!(devise_pl)
         nested_hash_to_string(pl).map {|x| x.split(".")[1..].join(".")}
     end
 

@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   resources :items
-  resources :translations, except: [:update]
+  resources :translations, only: [:index]
   scope "translations", defaults: { format: :json } do
     put "" => "translations#update"
     patch "" => "translations#update"

@@ -19,7 +19,7 @@ const Input = (props: InputProps) => {
 
   return (
     <input
-      className="w-full"
+      className="w-full text-gray-900"
       value={inputText}
       onChange={(e) => setInputText(e.target.value)}
     //   onBlur={() => props.onEnter(inputText)}

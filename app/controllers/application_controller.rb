@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
     def set_lang
       set_locale
-      redirect_to root_path
+      redirect_to request&.referer ? request.referer : root_path
     end
     
     private

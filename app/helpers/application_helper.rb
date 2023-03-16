@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
+    # def default_data_turbo
+    #   false
+    # end
     def react_component_esbuild(name, props = {})
       # Encode props as a JSON string and escape quotes to avoid HTML injection
       props_json = props.to_json.gsub(/"/, '&quot;').html_safe
